@@ -3,14 +3,26 @@
     <img src="../../assets/img/image.png" alt="Logo" class="logo-img" />
   </div>
 
-  <form (submit)="login()">
+  <form (submit)="login($event)">
     <div>
       <ion-item>
-        <ion-input label="Email input" type="email" [(ngModel)]="email" name="email" placeholder="email@domain.com"></ion-input>
+        <ion-input
+          #emailInput
+          label="Email input"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="email@domain.com">
+        </ion-input>
       </ion-item>
   
       <ion-item class="ion-margin-top">
-        <ion-input type="password" label="Password" [(ngModel)]="password" name="password" value="NeverGonnaGiveYouUp">
+        <ion-input
+          #passwordInput
+          type="password"
+          label="Password"
+          [(ngModel)]="password"
+          name="password">
           <ion-input-password-toggle slot="end"></ion-input-password-toggle>
         </ion-input>
       </ion-item>
@@ -27,8 +39,8 @@
 </div>
 
 <ion-toast
-    [isOpen]="isToastOpen"
-    message="Credenciales incorrectas"
-    [duration]="5000"
-    (didDismiss)="isToastOpen = false"
-  ></ion-toast>
+  [isOpen]="isToastOpen"
+  message="Credenciales incorrectas"
+  [duration]="2000"
+  (didDismiss)="isToastOpen = false">
+</ion-toast>
