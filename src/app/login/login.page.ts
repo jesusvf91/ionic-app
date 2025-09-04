@@ -28,6 +28,9 @@ export class LoginPage {
     if (this.email === 'jesus.vargas@tinet.cl' && this.password === '123456') {
       this.animateSuccess();
       setTimeout(() => {
+
+        localStorage.setItem("email", this.email);
+
         this.router.navigateByUrl('/home', {
           state: { email: this.email }
         });

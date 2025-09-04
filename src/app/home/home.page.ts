@@ -17,17 +17,10 @@ export class HomePage implements OnInit {
 
   // Metodo que se ejecuta cuando se crea el componente
   ngOnInit() {
+    this.email = localStorage.getItem("email")!;
 
-    // Se lee los parametros que vienen desde la url
-    this.activateRoute.queryParams.subscribe(params => {
-
-      // Se asigna el dato desde los parametros
-      this.email = params['email'];
-
-      // Si email esta vacío redirecciona al login
-      if (this.email === "") {
-        this.router.navigateByUrl('/login');
-      }
-    });
+    if (this.email == null || this.email === "") {
+      this.router.navigateByUrl("/login");
+    }
   }
 }
