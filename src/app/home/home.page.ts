@@ -1,33 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
+import { Router, RouterModule } from '@angular/router';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, IonIcon } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { logOutOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, RouterModule],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, RouterModule, IonButtons, IonIcon],
 })
 export class HomePage implements OnInit {
 
   email: string = "";
 
-  constructor(private activateRoute: ActivatedRoute, 
-              private router: Router) {}
+  constructor(private router: Router) {
+
+    addIcons({ logOutOutline });
+  }
+
 
   // Metodo que se ejecuta cuando se crea el componente
   ngOnInit() {
+    const storedEmail = sessionStorage.getItem('userEmail');
 
-    // Se lee los parametros que vienen desde la url
-    this.activateRoute.queryParams.subscribe(params => {
-
-      // Se asigna el dato desde los parametros
-      this.email = params['email'];
-
-      // Si email esta vacío redirecciona al login
-      if (this.email === "") {
-        this.router.navigateByUrl('/login');
-      }
-    });
+    if (storedEmail) {
+      this.email = storedEmail;
+    }
   }
 }

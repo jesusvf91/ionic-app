@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { createAnimation } from '@ionic/angular';
@@ -12,7 +12,7 @@ import { IonToast, IonItem, IonButton, IonInputPasswordToggle, IonInput } from '
   standalone: true,
   imports: [CommonModule, FormsModule, IonItem, IonButton, IonInput, IonInputPasswordToggle, IonToast]
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
   isToastOpen = false;
@@ -22,15 +22,20 @@ export class LoginPage {
 
   constructor(private router: Router) { }
 
+  ngOnInit() {
+    sessionStorage.setItem('isLoggedIn', 'false');
+  }
+
   login(event: Event) {
     event.preventDefault();
 
     if (this.email === 'jesus.vargas@tinet.cl' && this.password === '123456') {
       this.animateSuccess();
       setTimeout(() => {
-        this.router.navigateByUrl('/home', {
-          state: { email: this.email }
-        });
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('userEmail', this.email);
+
+        this.router.navigateByUrl('/home');
       }, 600);
     } else {
       this.animateError();
