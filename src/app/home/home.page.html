@@ -1,17 +1,17 @@
-<ion-content [fullscreen]="true" class="content-custom">
-  <ion-header collapse="condense">
-    <ion-toolbar class="toolbar-custom">
-      <ion-title>
-        Bienvenido {{email}}
-      </ion-title>
-      <ion-buttons slot="end">
-        <ion-button class="logout-button" routerLink="/login">
-          <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+<ion-header>
+  <ion-toolbar class="toolbar-custom">
+    <ion-title>
+      Ionic App
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="logout-button" routerLink="/login">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content [fullscreen]="true" class="content-custom">
   <div id="container" class="container-custom">
     <h1>Bienvenido {{email}}</h1>
   </div>
