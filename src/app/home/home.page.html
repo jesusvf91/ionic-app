@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar class="toolbar-custom">
     <ion-title>
-      Ionic App
+      Bienvenido {{email}}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button class="logout-button" routerLink="/login">
@@ -12,7 +12,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="content-custom">
-  <div id="container" class="container-custom">
-    <h1>Bienvenido {{email}}</h1>
+
+  <ion-spinner *ngIf="listadoPosts.length === 0" name="crescent"></ion-spinner>
+
+  <div *ngIf="listadoPosts.length > 0">
+    <ion-card *ngFor="let post of listadoPosts">
+      <ion-card-header>
+        <ion-card-title>{{post.title}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        {{post.body}}
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
